@@ -4,7 +4,11 @@ from typing import Any, List
 class Animal:
     alive: List["Animal"] = []
 
-    def __init__(self, name: str, health: int = 100) -> None:
+    def __init__(
+            self,
+            name: str,
+            health: int = 100
+    ) -> None:
         self.name: str = name
         self.hidden: bool = False
         self.health: int = health
@@ -12,7 +16,11 @@ class Animal:
         if self.health > 0:
             Animal.alive.append(self)
 
-    def __setattr__(self, key: str, value: Any) -> None:
+    def __setattr__(
+            self,
+            key: str,
+            value: Any
+    ) -> None:
         if key == "health":
             value = max(0, value)
 
@@ -30,11 +38,16 @@ class Animal:
 
 
 class Herbivore(Animal):
-    def hide(self) -> None:
+    def hide(
+            self
+    ) -> None:
         self.hidden = not self.hidden
 
 
 class Carnivore(Animal):
-    def bite(self, animal: Animal) -> None:
+    def bite(
+            self,
+            animal: Animal
+    ) -> None:
         if isinstance(animal, Herbivore) and not animal.hidden:
             animal.health -= 50
